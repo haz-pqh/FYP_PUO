@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Sesat&nbsp;-&nbsp;sesat&nbsp;PUO&nbsp;Official&nbsp;Website</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="assets/img/logo.png" rel="icon">
+  <link href="assets/img/logo.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Dewi
+  * Template URL: https://bootstrapmade.com/dewi-free-multi-purpose-html-template/
+  * Updated: Aug 07 2024 with Bootstrap v5.3.3
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+
+  <style>
+        .mapFrame {
+            width: fit-content;
+            height: fit-content;
+            text-align: center;
+            /* background: url('assets/img/puoMap1.png') no-repeat center center; */
+            /* background-size: contain; */
+            position: relative;
+        }
+        .location {
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0);
+            /* background-color: rgba(0, 0, 0, 0.292); */
+            cursor: pointer;
+        }
+        .highlight {
+            background-color: rgba(51, 254, 0, 0.572) !important;
+        }
+        .tooltip {
+            display: none;
+            position: absolute;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
+            white-space: nowrap;
+        }
+        .search-wrapper {
+            max-width: 600px;
+            margin: 20px auto;
+        }
+        
+        .search-box {
+            position: relative;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+        
+        .search-box:focus-within {
+            box-shadow: 0 3px 20px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+        
+        .search-input {
+            border-radius: 50px;
+            padding-left: 45px;
+            padding-right: 20px;
+            border: 1px solid rgb(197, 197, 197);
+            transition: all 0.3s ease;
+            height: 50px;
+        }
+        
+        .search-input:focus {
+            border-color: #e6d900;
+            box-shadow: none;
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6c757d;
+            z-index: 10;
+        }
+        
+        .search-button {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-radius: 50px;
+            padding-top: 8px;
+            padding-bottom: 8px;
+            padding-left: 20px;
+            padding-right: 30px;
+            transition: all 0.3s ease;
+            background-color: #bcb300;
+            border: 0px;
+        }
+        
+        .search-button:hover {
+            background-color: #e6d900;
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        /* Dark theme search box */
+        .search-box.dark {
+            background-color: #212529;
+        }
+        
+        .search-box.dark .search-input {
+            background-color: #212529;
+            color: #fff;
+        }
+        
+        .search-box.dark .search-input::placeholder {
+            color: #6c757d;
+        }
+        
+        .search-box.dark .search-icon {
+            color: #6c757d;
+        }
+        .backLayer{
+    position: absolute; 
+    width: 100%; 
+    height: 100%; 
+    background-color: rgba(0, 0, 0, 0);
+    z-index: 3;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) scale(0);
+  }
+
+  .backLayer .layer1{
+    position: absolute;
+    border: 2px solid rgb(202, 202, 202); 
+    border-radius: 10px; 
+    display: flex; 
+    width: 650px; 
+    height: fit-content; 
+    background-color: white; 
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) scale(1);
+    z-index: 4;
+    box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(255, 255, 255, 0.19);
+    overflow: hidden;
+  }
+  .backLayer .layer1 #info{
+    display: flex; 
+  }
+  .backLayer.active{
+    transition: all 200ms ease-in-out;
+    transform:translate(-50%,-50%) scale(1);
+  }
+  
+  .close-btn{
+    position: absolute;
+    font-size: 40px;
+    font-weight: bold;
+    text-align: right;
+    padding: 0px 10px;
+    margin-top: -10px;
+    width: 100%;
+    cursor: pointer;
+    z-index: 1;
+  }
+  .left_part{
+    width: 300px;
+  }
+
+  .left_part img{
+    width: 270px;
+  }
+  
+  .right_part{
+    width: 60%; 
+    height: fit-content; 
+    padding: 40px 20px; 
+    text-align: start;
+  }
+
+  .right_part h4{
+    font-weight: bold;
+  }
+
+  .right_part h6{
+    font-size: 13px; 
+    font-weight: bold; 
+    color: rgb(110, 110, 110);
+  }
+
+  .right_part p{
+    font-size: 14px; 
+    color: rgb(101, 101, 101);
+  }
+
+  .right_part span{
+    font-weight: bold; 
+    color: black;
+  }
+
+  .right_part button{
+    background-color: blue; 
+    border: 0; 
+    border-radius: 5px; 
+    padding: 5px 15px; 
+    font-size: 13px; 
+    color: white;
+    transition: .4s;
+  }
+
+  .right_part button:hover{
+    color: black;
+    background-color: rgb(167, 167, 249);
+    text-decoration: underline;
+  }
+  </style>
+</head>
+
+<body class="starter-page-page">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <img src="assets/img/logo.png" alt="">
+        <h1 class="sitename">&nbsp;POLITEKNIK UNGKU OMAR</h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#services">Fields Offer</a></li>
+          <li><a href="starter-page.html" class="active">Map</a></li>
+          <li><a href="team.html">Team</a></li>
+          <!-- <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="#">Dropdown 1</a></li>
+              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                <ul>
+                  <li><a href="#">Deep Dropdown 1</a></li>
+                  <li><a href="#">Deep Dropdown 2</a></li>
+                  <li><a href="#">Deep Dropdown 3</a></li>
+                  <li><a href="#">Deep Dropdown 4</a></li>
+                  <li><a href="#">Deep Dropdown 5</a></li>
+                </ul>
+              </li>
+              <li><a href="#">Dropdown 2</a></li>
+              <li><a href="#">Dropdown 3</a></li>
+              <li><a href="#">Dropdown 4</a></li>
+            </ul>
+          </li> -->
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+
+      <!-- <a class="cta-btn" href="index.html#about">Get Started</a> -->
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Page Title -->
+    <div class="page-title dark-background" data-aos="fade" style="background-image: url(assets/img/bgPUO.jpg);">
+      <div class="container position-relative">
+        <h1>Maps of PUO</h1>
+        <!-- <p>Esse dolorum voluptatum ullam est sint nemo et est ipsa porro placeat quibusdam quia assumenda numquam molestias.</p> -->
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li class="current">Maps of PUO</li>
+          </ol>
+        </nav>
+      </div>
+    </div><!-- End Page Title -->
+
+    <!-- Starter Section Section -->
+    <section id="features" class="features section">
+
+      <!-- Section Title -->
+      <!-- <div class="container section-title" data-aos="fade-up">
+        <h2>Plan</h2>
+        <p>Maps of PUO<br></p>
+      </div>End Section Title -->
+
+      <div class="container" data-aos="fade-up">
+        <!-- Features Section -->
+
+        <div class="row">
+          <div class="col-lg-12 order-2 order-lg-1 mt-3 mt-lg-0 text-center">
+            <!-- <div class="container">
+              <div class="row justify-content-center">
+                  <div class="col-md-6">
+                      <form>
+                          <div class="input-group mb-3">
+                              <select class="form-select" style="max-width: 150px;" id="category">
+                                  <option value="all">All Categories</option>
+                                  <option value="parking">Parking</option>
+                                  <option value="building">Building</option>
+                              </select>
+                              <input type="text" id="search-bar" placeholder="Search for a location..." onkeyup="searchLocation()">
+                              <button class="btn btn-primary" type="submit">Search</button>
+                          </div>
+                      </form>
+                  </div>
+              </div> -->
+          </div>
+          <div class="search-wrapper">
+            <div class="search-box">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="search-bar" placeholder="Search for a location..." onkeyup="searchLocation()" class="form-control search-input">
+                <!-- <button class="btn btn-primary search-button">
+                        Search
+                    </button> -->
+                <select class="btn btn-primary search-button" style="max-width: 250px;" id="category">
+                    <option value="all">All Categories</option>
+                    <option value="parking">Parking</option>
+                    <option value="building">Building</option>
+                    <option value="dewan">Dewan</option>
+                    <option value="kamsis">Kamsis</option>
+                </select>
+            </div>
+        </div>
+
+            <div class="mapFrame" id="mapFrame">
+              <img src="assets/img/puoMap.png" class="img-fluid col-lg-6" style="border-radius: 10px; border: 1px solid rgb(219, 219, 219);">
+              <div class="location" id="location-Dewan Seri Kinta" data-all="all" data-category="dewan" style="top: 20.5%; left: 50.5%; width: 35px; height: 20px; rotate: 135deg;" onclick="showTooltip(event, `<div class='left_part'><img src='assets/img/DewanSeriKinta.jpg' id='image' style='width: 280px; height: 230px;'></div><div class='right_part'><h4 style='text-transform:uppercase;'></h4><span>Name : </span><br><span>Department : </span><br><br></p><button id='btnNext' value='dewan seri kinta' onclick='nextPage()'>View More</button></div>`)" ondblclick="hideTooltip()" data-name="dewan seri kinta"></div>
+              <div class="location" id="location-Unit Pembangunan" data-all="all" data-category="building" style="top: 57.5%; left: 37%; width: 40px; height: 20px; rotate: 0deg;" onclick="showTooltip(event, `<div class='left_part'><img src='assets/img/unitPembangunan.jpg' id='image' style='width: 280px; height: 230px;'></div><div class='right_part'><h4 style='text-transform:uppercase;'></h4><span>Name : </span><br><span>Department : </span><br><br></p><button id='btnNext' value='unit pembangunan' onclick='nextPage()'>View More</button></div>`)" ondblclick="hideTooltip()" data-name="unit pembangunan"></div>
+              <div class="location" id="location-Parking Bas" data-all="all" data-category="parking" style="top: 30.5%; left: 47.7%; width: 43px; height: 15px; rotate: 40deg;" onclick="showTooltip(event, `<div class='left_part'><img src='assets/img/parkingBas.jpg' id='image' style='width: 280px; height: 230px;'></div><div class='right_part'><h4 style='text-transform:uppercase;'></h4><span>Name : </span><br><span>Department : </span><br><br></p><button id='btnNext' value='parking bas' onclick='nextPage()'>View More</button></div>`)" ondblclick="hideTooltip()" data-name="parking bas"></div>
+              <div class="location" id="location-Kantin C" data-all="all" data-category="building" style="top: 20%; left: 45.9%; width: 25px; height: 15px; rotate: 40deg;" onclick="showTooltip(event, `<div class='left_part'><img src='assets/img/KantinC.jpg' id='image' style='width: 280px; height: 230px;'></div><div class='right_part'><h4 style='text-transform:uppercase;'></h4><span>Name : </span><br><span>Department : </span><br><br></p><button id='btnNext' value='kantin c' onclick='nextPage()'>View More</button></div>`)" ondblclick="hideTooltip()" data-name="kantin c"></div>
+              <div class="location" id="location-Cafe Kediaman PFI" data-all="all" data-category="building" style="top: 31.5%; left: 37.7%; width: 38px; height: 20px; rotate: 40deg;" onclick="showTooltip(event, `<div class='left_part'><img src='assets/img/CafekediamanPFI.jpg' id='image' style='width: 280px; height: 230px;'></div><div class='right_part'><h4 style='text-transform:uppercase;'></h4><span>Name : </span><br><span>Department : </span><br><br></p><button id='btnNext' value='cafe kediaman pfi' onclick='nextPage()'>View More</button></div>`)" ondblclick="hideTooltip()" data-name="cafe kediaman pfi"></div>
+              <div class="location" id="location-Blok M JP" data-all="all" data-category="building" style="top: 6.5%; left: 47.2%; width: 38px; height: 20px; rotate: 145deg;" onclick="showTooltip(event, `<div class='left_part'><img src='assets/img/blokM_JP.jpg' id='image' style='width: 280px; height: 230px;'></div><div class='right_part'><h4 style='text-transform:uppercase;'></h4><span>Name : </span><br><span>Department : </span><br><br></p><button id='btnNext' value='blok m jp' onclick='nextPage()'>View More</button></div>`)" ondblclick="hideTooltip()" data-name="blok m jp"></div>
+              <div class="location" id="location-Blok B JP" data-all="all" data-category="building" style="top: 27.5%; left: 48.5%; width: 43px; height: 15px; rotate: 40deg;" onclick="showTooltip(event, `<div class='left_part'><img src='assets/img/blokB_JP.jpg' id='image' style='width: 280px; height: 230px;'></div><div class='right_part'><h4 style='text-transform:uppercase;'></h4><span>Name : </span><br><span>Department : </span><br><br></p><button id='btnNext' value='blok b jp' onclick='nextPage()'>View More</button></div>`)" ondblclick="hideTooltip()" data-name="blok b jp"></div>
+              <div class="location" id="location-berlian" data-all="all" data-category="kamsis" style="top: 12.5%; left: 37.3%; width: 35px; height: 20px; rotate: 35deg;" onclick="showTooltip(event, `<div class='left_part'><img src='assets/img/Kamsisberlian.jpg' id='image' style='width: 280px; height: 230px;'></div><div class='right_part'><h4 style='text-transform:uppercase;'></h4><span>Name : </span><br><span>Department : </span><br><br></p><button id='btnNext' value='berlian' onclick='nextPage()'>View More</button></div>`)" ondblclick="hideTooltip()" data-name="berlian"></div>
+              <div class="location" id="location-emas" data-all="all" data-category="kamsis" style="top: 16.7%; left: 36%; width: 35px; height: 20px; rotate: 40deg;" onclick="showTooltip(event, `<div class='left_part'><img src='assets/img/Kamsisemas.jpg' id='image' style='width: 280px; height: 230px;'></div><div class='right_part'><h4 style='text-transform:uppercase;'></h4><span>Name : </span><br><span>Department : </span><br><br></p><button id='btnNext' value='emas' onclick='nextPage()'>View More</button></div>`)" ondblclick="hideTooltip()" data-name="emas"></div>
+              <div class="location" id="location-mutiara" data-all="all" data-category="kamsis" style="top: 21.5%; left: 34.5%; width: 35px; height: 20px; rotate: 43deg;" onclick="showTooltip(event, `<div class='left_part'><img src='assets/img/Kamsismutiara.jpg' id='image' style='width: 280px; height: 230px;'></div><div class='right_part'><h4 style='text-transform:uppercase;'></h4><span>Name : </span><br><span>Department : </span><br><br></p><button id='btnNext' value='mutiara' onclick='nextPage()'>View More</button></div>`)" ondblclick="hideTooltip()" data-name="mutiara"></div>
+              <div class="location" id="location-zamrud" data-all="all" data-category="kamsis" style="top: 34.5%; left: 32.5%; width: 35px; height: 20px; rotate: 135deg;" onclick="showTooltip(event, `<div class='left_part'><img src='assets/img/Kamsiszamrud.jpg' id='image' style='width: 280px; height: 230px;'></div><div class='right_part'><h4 style='text-transform:uppercase;'></h4><span>Name : </span><br><span>Department : </span><br><br></p><button id='btnNext' value='zamrud' onclick='nextPage()'>View More</button></div>`)" ondblclick="hideTooltip()" data-name="zamrud"></div>
+              <div class="location" id="location-delima" data-all="all" data-category="kamsis" style="top: 39.5%; left: 34.7%; width: 35px; height: 20px; rotate: 130deg;" onclick="showTooltip(event, `<div class='left_part'><img src='assets/img/Kamsisdelima.jpg' id='image' style='width: 280px; height: 230px;'></div><div class='right_part'><h4 style='text-transform:uppercase;'></h4><span>Name : </span><br><span>Department : </span><br><br></p><button id='btnNext' value='delima' onclick='nextPage()'>View More</button></div>`)" ondblclick="hideTooltip()" data-name="delima"></div>
+              
+              <div class="backLayer" id="backLayer">
+                <div class='layer1'>
+                  <div class='close-btn' id='close-btn'>&times;</div>
+                  <div style='width: 100%; height: fit-content;' id="info">
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="tooltip" id="tooltip"></div>
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /Starter Section Section -->
+    <script>
+      const locations = {
+        "dewan seri kinta": "location-Dewan Seri Kinta",
+        "unit pembangunan": "location-Unit Pembangunan",
+        "parking bas": "location-Parking Bas",
+        "kantin c": "location-Kantin C",
+        "cafe kediaman pfi": "location-Cafe Kediaman PFI",
+        "blok m jp": "location-Blok M JP",
+        "blok b jp": "location-Blok B JP",
+          "berlian": "location-berlian",
+          "emas": "location-emas",
+          "mutiara": "location-mutiara",
+          "zamrud": "location-zamrud",
+          "delima": "location-delima"
+      };
+
+      function showTooltip(event, text) {
+          let tooltip = document.getElementById('backLayer');
+          let image = document.getElementById('image');
+          let inf = document.getElementById('info');
+          inf.innerHTML = text;
+          // tooltip.innerHTML = text;
+
+          tooltip.classList.toggle('active');
+
+          // let map = document.getElementById('mapFrame');
+          // let rect = map.getBoundingClientRect(); // Get map position relative to viewport
+
+          // tooltip.style.left = event.pageX - rect.left + 'px'; // Adjust relative to map
+          // tooltip.style.top = event.pageY - rect.top + 'px'; // Adjust relative to map
+      }
+
+
+          let close_btn = document.getElementById('close-btn');
+          close_btn.addEventListener("click", close);
+
+        function close(){
+          document.getElementById("backLayer").classList.toggle("active");
+        }
+      
+
+      function searchLocation() {
+            let input = document.getElementById('search-bar').value.toLowerCase().trim();
+            let selectedCategory = document.getElementById('category').value;
+            let allLocations = document.querySelectorAll('.location');
+            
+            allLocations.forEach(loc => loc.classList.remove('highlight'));
+            
+            if (selectedCategory === "all") {
+              allLocations.forEach(loc => loc.classList.remove('highlight'));
+          
+              Object.keys(locations).forEach(key => {
+                if(input != ""){
+                  if (key.includes(input)) {
+                      let found = locations[key];
+                      document.getElementById(found).classList.add('highlight');
+                  }
+                }
+
+                if(input === ""){
+                  allLocations.forEach(loc => loc.classList.remove('highlight'));
+                }
+                  
+              });
+            }
+            if (selectedCategory === "parking" || selectedCategory === "building" || selectedCategory === "dewan" || selectedCategory === "kamsis") {
+                allLocations.forEach(loc => {
+                    let locationName = loc.getAttribute('data-name').toLowerCase();
+                    let category = loc.getAttribute('data-category');
+
+                    if(category === selectedCategory){
+                      if (locationName.includes(input)) {
+                        loc.classList.add('highlight');
+                      }
+                      if (input === "") {
+                          loc.classList.remove('highlight');
+                      }
+                    }
+                    
+                });
+            }
+        }
+
+        function nextPage(){
+          let btn = document.getElementById('btnNext').value;
+
+          window.location.href= btn + '.html';
+        }
+
+      //   function searchLocation() {
+      //     let input = document.getElementById('search-bar').value.toLowerCase();
+      //     let allLocations = document.querySelectorAll('.location');
+          
+      //     if (input === "") {
+      //         allLocations.forEach(loc => loc.classList.remove('highlight'));
+      //         return;
+      //     }
+          
+      //     allLocations.forEach(loc => loc.classList.remove('highlight'));
+          
+      //     Object.keys(locations).forEach(key => {
+      //         if (key.includes(input)) {
+      //             let found = locations[key];
+      //             document.getElementById(found).classList.add('highlight');
+      //         }
+      //     });
+      // }
+
+  </script>
+  </main>
+
+  <footer id="footer" class="footer dark-background">
+
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-4 col-md-6 footer-about">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <span class="sitename">POLITEKNIK UNGKU OMAR</span>
+          </a>
+          <div class="footer-contact pt-3">
+            <p>PUO, Politeknik Ungku Omar, </p>
+            <p>Jalan Raja Musa Mahad 31400 Ipoh Perak</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>+1-300-88-1969<</span></p>
+            <p><strong>Email:</strong> <span>puo.edu.my</span></p>
+          </div>
+          <div class="social-links d-flex mt-4">
+            <a href="https://www.youtube.com/user/puowebtv/videos"><i class="bi bi-youtube"></i></a>
+            <a href="https://www.facebook.com/puojke1969/"><i class="bi bi-facebook"></i></a>
+            <a href="https://www.instagram.com/poliungkuomar/"><i class="bi bi-instagram"></i></a>
+            <a href="https://x.com/PUOIPOH"><i class="bi bi-twitter-x"></i></a>
+          </div>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Useful Links</h4>
+          <ul>
+            <li><i class="bi bi-chevron-right"></i> <a href="index.html">Home</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="index.html#about">About</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="index.html#services">Fields Offer</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="starter-page.html">Map</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="team.html">Team</a></li>
+          </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-3 footer-links">
+          <h4>Our Services</h4>
+          <ul>
+            <!-- <li><i class="bi bi-chevron-right"></i> <a href="#">Web Design</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Web Development</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Product Management</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Marketing</a></li>
+            <li><i class="bi bi-chevron-right"></i> <a href="#">Graphic Design</a></li> -->
+          </ul>
+        </div>
+
+        <div class="col-lg-4 col-md-12 footer-newsletter">
+          <h4>Feedback</h4>
+          <p>Please give us some feedback about our website or about PUO!</p>
+          <form action="forms/newsletter.php" method="post" class="php-email-form">
+            <div class="newsletter-form"><input type="email" name="email"><input type="submit" value="Send"></div>
+            <div class="loading">Loading</div>
+            <div class="error-message"></div>
+            <div class="sent-message">Your subscription request has been sent. Thank you!</div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename" style="color: #fff100;">Haxel</strong> <span>All Rights Reserved</span></p>
+      <!-- <div class="credits">
+        All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you've purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url]
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> Distributed by <a href=“https://themewagon.com>ThemeWagon
+      </div> -->
+    </div>
+
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
